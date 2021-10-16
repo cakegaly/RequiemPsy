@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <title>Requiem Psy Converter</title>
+    </head>
+
+    <script>
+        function convertText() {
+            const targetText = document.getElementById("inputText").value;
+            const result = targetText.split("")
+                .map(
+                    c => {
+                        let codePoint = c.charCodeAt(0);
+                        if ('A'.charCodeAt(0) <= codePoint && codePoint <= 'Z'.charCodeAt(0)) {
+                            codePoint += 119951;
+                        }
+                        if ('a'.charCodeAt(0) <= codePoint && codePoint <= 'z'.charCodeAt(0)) {
+                            codePoint += 119945;
+                        }
+                        return String.fromCodePoint(codePoint);
+                    })
+                .join("");
+            document.getElementById('result').value = result;
+        }
+    </script>
+
+    <body>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+        <div class="container py-4" id="contact">
+            <form>
+                <div class="mb-3">
+                    <label for="inputText">Input</label>
+                    <input type="text" class="form-control" id="inputText" placeholder="ここに入力して Convert してくだ Psy...">
+                </div>
+                <div class="mb-3">
+                    <button onclick="convertText()" type="button" class="btn btn-success">Convert</button>
+                </div>
+                <div class="mb-3">
+                    <label for="result">Output</label>
+                    <input type="text" class="form-control" id="result" placeholder="ここからコピペしてくだ Psy...">
+                </div>
+            </form>
+        </div>
+    </body>
+
+    <footer class="text-center bg-dark text-white">
+        <p class="py-3">(c) cakegaly</p>
+    </footer>
+</html>
